@@ -12,58 +12,79 @@
 <body>
     <div class="main-wrapper">
         <!-- ================= PEGA Section (TOP) ================= -->
-        <div class="template-selector-container" id="pegaContainer">
-            <div class="logo-slot" style="text-align:center;">
-                <img src="https://kodenashi.github.io/pega/assets/pegalogo.png" alt="Pega" style="max-width:120px;">
-            </div>
-            <h2 style="text-align:center;">Pega Templates</h2>
+<div class="template-selector-container" id="pegaContainer">
+    <div class="logo-slot" style="text-align:center;">
+        <img src="https://kodenashi.github.io/pega/assets/pegalogo.png" alt="Pega" style="max-width:120px;">
+    </div>
+    <h2 style="text-align:center;">Pega Templates</h2>
 
-            <select id="pegaDropdown" onchange="showPegaForm()">
-                <option value="">-- Select a Template --</option>
-                <option value="pegaTemplate">Pega Case Note</option>
+    <select id="pegaDropdown" onchange="showPegaForm()">
+        <option value="">-- Select a Template --</option>
+        <option value="pegaTemplate">Pega Case Note</option>
+    </select>
+
+    <form id="pegaTemplate" class="template-form">
+        <label for="pegaCid">CID:</label>
+        <input type="text" id="pegaCid" />
+
+        <label for="pegaCprod">CPROD:</label>
+        <input type="text" id="pegaCprod" />
+
+        <label for="pegaPhone">PHONE#:</label>
+        <input type="text" id="pegaPhone" />
+
+        <label for="pegaName">NAME:</label>
+        <input type="text" id="pegaName" />
+
+        <label for="pegaAuth">AUTHENTICATED (Y/N):</label>
+        <select id="pegaAuth">
+            <option value="">-- Select --</option>
+            <option value="Y">Y</option>
+            <option value="N">N</option>
+        </select>
+
+        <label for="pegaDomain">DOMAIN:</label>
+        <input type="text" id="pegaDomain" />
+
+        <label for="pegaConcern">CONCERN:</label>
+        <textarea id="pegaConcern"></textarea>
+
+        <label for="pegaAction">ACTION DONE:</label>
+        <textarea id="pegaAction"></textarea>
+
+        <label for="pegaNextAction">NEXT ACTION:</label>
+        <textarea id="pegaNextAction"></textarea>
+
+        <label for="pegaOsad">OSAD (Y/N):</label>
+        <select id="pegaOsad" onchange="toggleOsadReason()">
+            <option value="">-- Select --</option>
+            <option value="Y">Y</option>
+            <option value="N">N</option>
+        </select>
+
+        <!-- Hidden OSAD Reason -->
+        <div id="pegaOsadReasonWrapper" style="display:none; margin-top:8px;">
+            <label for="pegaOsadReason">Reason:</label>
+            <select id="pegaOsadReason">
+                <option value="">-- Select Reason --</option>
+                <option value="Site Launch">Site Launch</option>
+                <option value="Website Issue">Website Issue</option>
+                <option value="SSL Issue">SSL Issue</option>
+                <option value="SSL">SSL</option>
             </select>
-
-            <form id="pegaTemplate" class="template-form">
-                <label>CID:</label>
-                <input type="text" id="pegaCid" oninput="updatePreview()">
-
-                <label>CPROD:</label>
-                <input type="text" id="pegaCprod" oninput="updatePreview()">
-
-                <label>PHONE#:</label>
-                <input type="text" id="pegaPhone" oninput="updatePreview()">
-
-                <label>NAME:</label>
-                <input type="text" id="pegaName" oninput="updatePreview()">
-
-                <label>AUTHENTICATED (Y/N):</label>
-                <input type="text" id="pegaAuth" oninput="updatePreview()">
-
-                <label>DOMAIN:</label>
-                <input type="text" id="pegaDomain" oninput="updatePreview()">
-
-                <label>CONCERN:</label>
-                <textarea id="pegaConcern" oninput="updatePreview()"></textarea>
-
-                <label>ACTION DONE:</label>
-                <textarea id="pegaAction" oninput="updatePreview()"></textarea>
-
-                <label>NEXT ACTION:</label>
-                <textarea id="pegaNextAction" oninput="updatePreview()"></textarea>
-
-                <label>OSAD (Y/N) REASON:</label>
-                <textarea id="pegaOsad" oninput="updatePreview()"></textarea>
-
-                <div class="preview-container">
-                    <h3>Preview</h3>
-                    <div class="preview-box"></div>
-                    <div style="margin-top:10px;">
-                        <button type="button" class="btn-copy" onclick="copyPreview('pegaTemplate')">Copy</button>
-                        <button type="button" class="btn-reset" onclick="resetForm('pegaTemplate')">Reset</button>
-                    </div>
-                </div>
-            </form>
         </div>
+
+        <div class="preview-container">
+            <h3>Preview</h3>
+            <div class="preview-box"></div>
+            <div class="form-buttons">
+                <button type="button" class="btn-copy" onclick="copyPreview('pegaTemplate')">Copy</button>
+                <button type="button" class="btn-reset" onclick="resetForm('pegaTemplate')">Reset</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 
 
