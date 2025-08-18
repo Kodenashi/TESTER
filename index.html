@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPCC & OSAD Templates</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="https://kodenashi.github.io/Templates/assets/PPCCLOGO3.png">
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <!-- ================= PEGA Section (TOP) ================= -->
+        <div class="template-selector-container" id="pegaContainer">
+            <div class="logo-slot" style="text-align:center;">
+                <img src="https://kodenashi.github.io/pega/assets/pegalogo.png" alt="Pega" style="max-width:120px;">
+            </div>
+            <h2 style="text-align:center;">Pega Template</h2>
+
+            <select id="pegaDropdown" onchange="showPegaForm()">
+                <option value="">-- Select a Template --</option>
+                <option value="pegaTemplate">Pega Case Note</option>
+            </select>
+
+            <form id="pegaTemplate" class="template-form">
+                <label>CID:</label>
+                <input type="text" id="pegaCid" oninput="updatePreview()">
+
+                <label>CPROD:</label>
+                <input type="text" id="pegaCprod" oninput="updatePreview()">
+
+                <label>PHONE#:</label>
+                <input type="text" id="pegaPhone" oninput="updatePreview()">
+
+                <label>NAME:</label>
+                <input type="text" id="pegaName" oninput="updatePreview()">
+
+                <label>AUTHENTICATED (Y/N):</label>
+                <input type="text" id="pegaAuth" oninput="updatePreview()">
+
+                <label>DOMAIN:</label>
+                <input type="text" id="pegaDomain" oninput="updatePreview()">
+
+                <label>CONCERN:</label>
+                <textarea id="pegaConcern" oninput="updatePreview()"></textarea>
+
+                <label>ACTION DONE:</label>
+                <textarea id="pegaAction" oninput="updatePreview()"></textarea>
+
+                <label>NEXT ACTION:</label>
+                <textarea id="pegaNextAction" oninput="updatePreview()"></textarea>
+
+                <label>OSAD (Y/N) REASON:</label>
+                <textarea id="pegaOsad" oninput="updatePreview()"></textarea>
+
+                <div class="preview-container">
+                    <h3>Preview</h3>
+                    <div class="preview-box"></div>
+                    <div style="margin-top:10px;">
+                        <button type="button" class="btn-copy" onclick="copyPreview('pegaTemplate')">Copy</button>
+                        <button type="button" class="btn-reset" onclick="resetForm('pegaTemplate')">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+        <!-- ================= PPCC Section (LEFT) ================= -->
+        <div class="template-selector-container" id="ppccContainer">
+            <div class="logo-slot" style="text-align:center;">
+                <img src="https://kodenashi.github.io/Templates/assets/PPCCLOGO3.png" alt="Logo" style="max-width:120px;">
+            </div>
+            <h2 style="text-align:center;">PPCC Templates</h2>
+            <select id="ppccDropdown" onchange="showPPCCForm()">
+                <option value="">-- Select a Template --</option>
+                <option value="note6Form">Leadership Escalation</option>
+                <option value="note3Form">LBL Modification</option>
+                <option value="note4Form">OBCX Request</option>
+                <option value="note5Form">Refund Request</option>
+            </select>
+
+
+            <!-- Leadership Escalation -->
+            <form id="note6Form" class="template-form">
+                <label>Name:</label>
+                <input type="text" id="name6" oninput="updatePreview()">
+                <label>Phone number:</label>
+                <input type="text" id="phone6" oninput="updatePreview()">
+                <label>Domain name or preview link:</label>
+                <input type="text" id="domain6" oninput="updatePreview()">
+                <label>I-Case:</label>
+                <input type="text" id="icase6" oninput="updatePreview()">
+                <label>Issue Summary:</label>
+                <textarea id="issueSummary6" rows="3" oninput="updatePreview()"></textarea>
+                <label>Expected Resolution:</label>
+                <textarea id="expectedResolution6" rows="2" oninput="updatePreview()"></textarea>
+                <label>Alt Solutions Provided:</label>
+                <textarea id="providedSolutions6" rows="2" oninput="updatePreview()"></textarea>
+                <label>Next Steps (Call out, Email, or Expedite):</label>
+                <input type="text" id="nextSteps6" oninput="updatePreview()">
+
+                <div class="preview-container">
+                    <h3>Preview</h3>
+                    <div class="preview-box"></div>
+                    <div style="margin-top:10px;">
+                        <button type="button" class="btn-copy" onclick="copyPreview('note6Form')">Copy</button>
+                        <button type="button" class="btn-reset" onclick="resetForm('note6Form')">Reset</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- LBL Modification -->
+            <form id="note3Form" class="template-form">
+                <h2 style="color:red; text-align:center;">
+                    Subject should be: <br>CPROD: xxxxxxxx | LBL Request
+                </h2>
+
+                <label>CPROD:</label>
+                <input type="text" id="cprod3" oninput="updatePreview()">
+
+                <label>Body:</label>
+                <textarea id="body3" rows="2" oninput="updatePreview()"></textarea>
+
+                <label>Business name:</label>
+                <input type="text" id="businessName3" oninput="updatePreview()">
+
+                <!-- Container for dynamic change requests -->
+                <div id="changeRequests"></div>
+
+                <!-- Add button -->
+                <button type="button" id="addChangeBtn" class="btn btn-add">➕ Add Change Request</button>
+
+                <!-- Preview -->
+                <div class="preview-container">
+                    <h3>Preview</h3>
+                    <div class="preview-box" id="preview3"></div>
+                    <div style="margin-top:10px;">
+                        <button type="button" class="btn-copy" onclick="copyPreview('note3Form')">Copy</button>
+                        <button type="button" class="btn-reset" onclick="resetForm('note3Form')">Reset</button>
+                    </div>
+                </div>
+            </form>
+
+
+            <!-- OBCX -->
+            <form id="note4Form" class="template-form">
+                <label>Customer Name:</label>
+                <input type="text" id="customerName4" oninput="updatePreview()">
+                <label>Customer Contact Number:</label>
+                <input type="text" id="customerContact4" oninput="updatePreview()">
+                <label>OBCX/OB-case/Pega Case Number:</label>
+                <input type="text" id="caseNumber4" oninput="updatePreview()">
+                <label>OBCX Agent Requested:</label>
+                <input type="text" id="agentRequested4" oninput="updatePreview()">
+                <label>2-Hour Callback Time Frame:</label>
+                <input type="text" id="callbackTime4" oninput="updatePreview()">
+                <label>Brief Notes:</label>
+                <textarea id="briefNotes4" rows="3" oninput="updatePreview()"></textarea>
+
+                <div class="preview-container">
+                    <h3>Preview</h3>
+                    <div class="preview-box"></div>
+                    <div style="margin-top:10px;">
+                        <button type="button" class="btn-copy" onclick="copyPreview('note4Form')">Copy</button>
+                        <button type="button" class="btn-reset" onclick="resetForm('note4Form')">Reset</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Refund Request -->
+            <form id="note5Form" class="template-form">
+                <label>URL:</label>
+                <input type="text" id="url5" oninput="updatePreview()">
+                <label>Customer Name:</label>
+                <input type="text" id="customerName5" oninput="updatePreview()">
+                <label>Reason for Refund Request:</label>
+                <textarea id="refundReason5" rows="4" oninput="updatePreview()"></textarea>
+                <label>Products:</label>
+                <input type="text" id="products5" oninput="updatePreview()">
+                <label>Open Work-Cases:</label>
+                <input type="text" id="openCases5" oninput="updatePreview()">
+
+                <div class="preview-container">
+                    <h3>Preview</h3>
+                    <div class="preview-box"></div>
+                    <div style="margin-top:10px;">
+                        <button type="button" class="btn-copy" onclick="copyPreview('note5Form')">Copy</button>
+                        <button type="button" class="btn-reset" onclick="resetForm('note5Form')">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- ================= OSAD Section (RIGHT) ================= -->
+        <div class="template-selector-container" id="osadContainer">
+            <div style="text-align:center;">
+                <img src="https://kodenashi.github.io/notes_generator/assets/logo.png" alt="Logo" style="max-width:120px;">
+            </div>
+            <h2 style="text-align:center;">OSAD Templates</h2>
+            <select id="osadDropdown" onchange="showOSADForm()">
+                <option value="">-- Select a Template --</option>
+                <option value="note1Form">OSAD Notes</option>
+                <option value="note2Form">Site Launch</option>
+            </select>
+
+            <!-- OSAD Notes -->
+            <form id="note1Form" class="template-form">
+                <label>Product affected:</label>
+                <input type="text" id="product1" oninput="updatePreview()">
+                <label>How to Replicate/Reproduce the issue/error:</label>
+                <textarea id="replicate1" oninput="updatePreview()"></textarea>
+                <label>Error Message:</label>
+                <textarea id="error1" oninput="updatePreview()"></textarea>
+                <label>Desired Result:</label>
+                <textarea id="result1" oninput="updatePreview()"></textarea>
+                <label>Troubleshooting done:</label>
+                <textarea id="troubleshooting1" oninput="updatePreview()"></textarea>
+                <label>F-Case:</label>
+                <input type="text" id="fcase1" oninput="updatePreview()">
+                <label>Additional Notes:</label>
+                <textarea id="notes1" oninput="updatePreview()"></textarea>
+                <label>Contact Method:</label>
+                <input type="text" id="contact1" oninput="updatePreview()">
+                <label>Newfold Email:</label>
+                <input type="email" id="email1" oninput="updatePreview()">
+
+                <div class="preview-container">
+                    <h3>Preview</h3>
+                    <div class="preview-box"></div>
+                    <div style="margin-top:10px;">
+                        <button type="button" class="btn-copy" onclick="copyPreview('note1Form')">Copy</button>
+                        <button type="button" class="btn-reset" onclick="resetForm('note1Form')">Reset</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Site Launch -->
+            <form id="note2Form" class="template-form">
+                <label>F-case:</label>
+                <input type="text" id="fcase2" oninput="updatePreview()">
+                <label>The domain name:</label>
+                <input type="text" id="domainLaunch2" oninput="updatePreview()">
+                <label>Verified domain:</label>
+                <input type="text" id="verifiedDomain2" oninput="updatePreview()">
+                <label>SSL Purchased?</label>
+                <input type="text" id="sslPurchase2" oninput="updatePreview()">
+                <label>Team:</label>
+                <input type="text" id="team2" oninput="updatePreview()">
+                <label>Newfold Email:</label>
+                <input type="email" id="email2" oninput="updatePreview()">
+
+                <div class="preview-container">
+                    <h3>Preview</h3>
+                    <div class="preview-box"></div>
+                    <div style="margin-top:10px;">
+                        <button type="button" class="btn-copy" onclick="copyPreview('note2Form')">Copy</button>
+                        <button type="button" class="btn-reset" onclick="resetForm('note2Form')">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
