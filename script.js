@@ -47,7 +47,11 @@ function copyPreview(formId) {
   });
 }
 
-function resetForm(form) {
+function resetForm(formOrId) {
+  const form = typeof formOrId === "string"
+    ? document.getElementById(formOrId)
+    : formOrId;
+
   if (!form) return;
 
   form.reset();
@@ -104,7 +108,6 @@ function addBackButtons(form) {
 }
 
 function backToSelector() {
-
   document.querySelectorAll('form.template-form.active').forEach(f => {
     resetForm(f);
     f.classList.remove('active');
