@@ -1,0 +1,147 @@
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 600px;   
+  width: 100%;
+  margin-top: 20px;
+  transform: scale(0.9); 
+  transform-origin: top center;
+}
+
+.template-selector-container {
+  flex: 1 1 40%;
+  min-width: 280px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 16px;
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+.template-selector-container:hover {
+  transform: translateY(-5px);
+}
+
+.template-selector-container h2 {
+  margin-top: 0;
+  font-size: 2rem;     /* smaller */
+  font-weight: bold;
+  color: #002b5c;
+  border-bottom: 2px solid #e0e6f5;
+  padding-bottom: 6px;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+}
+
+.template-form {
+  display: none;
+  margin-top: 15px;
+  padding: 12px;
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  text-align: left;
+  font-size: 1rem;   
+}
+
+.template-form.active {
+  display: block;
+}
+
+label {
+  display: block;
+  margin: 8px 0 4px;
+  font-weight: 500;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin-top: 3px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.preview-box {
+  background: #1e1e1e;
+  border: 1px solid #444;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 12px;
+  white-space: pre-wrap;
+  font-family: monospace, Consolas, "Courier New", monospace;
+  font-size: 0.9rem;
+  min-height: 70px;
+  color: #ffffff !important;
+}
+
+button {
+  display: inline-block;
+  margin: 6px 4px 0 0;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-copy { background: #007bff; color: #fff; }
+.btn-copy:hover { background: #0056b3; }
+
+.btn-reset { background: #dc3545; color: #fff; }
+.btn-reset:hover { background: #a71d2a; }
+
+.btn-back { background: #6c757d; color: #fff; margin-bottom: 10px; }
+.btn-back:hover { background: #5a6268; }
+
+.change-request-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.change-request-field textarea {
+  flex: 1;
+  min-height: 50px;
+}
+
+.btn-delete {
+  background: #ff9800;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  height: fit-content;
+  border: none;
+}
+
+.btn-delete:hover { background: #e68900; }
