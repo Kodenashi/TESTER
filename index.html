@@ -12,78 +12,79 @@
 <body>
     <div class="main-wrapper">
         <!-- ================= PEGA Section (TOP) ================= -->
-<div class="template-selector-container" id="pegaContainer">
-    <div class="logo-slot" style="text-align:center;">
-        <img src="https://kodenashi.github.io/pega/assets/pegalogo.png" alt="Pega" style="max-width:120px;">
-    </div>
-    <h2 style="text-align:center;">Pega Templates</h2>
-
-    <select id="pegaDropdown" onchange="showPegaForm()">
-        <option value="">-- Select a Template --</option>
-        <option value="pegaTemplate">Pega Case Note</option>
-    </select>
-
-    <form id="pegaTemplate" class="template-form">
-        <label for="pegaCid">CID:</label>
-        <input type="text" id="pegaCid" />
-
-        <label for="pegaCprod">CPROD:</label>
-        <input type="text" id="pegaCprod" />
-
-        <label for="pegaPhone">PHONE#:</label>
-        <input type="text" id="pegaPhone" />
-
-        <label for="pegaName">NAME:</label>
-        <input type="text" id="pegaName" />
-
-        <label for="pegaAuth">AUTHENTICATED (Y/N):</label>
-        <select id="pegaAuth">
-            <option value="">-- Select --</option>
-            <option value="Y">Y</option>
-            <option value="N">N</option>
-        </select>
-
-        <label for="pegaDomain">DOMAIN:</label>
-        <input type="text" id="pegaDomain" />
-
-        <label for="pegaConcern">CONCERN:</label>
-        <textarea id="pegaConcern"></textarea>
-
-        <label for="pegaAction">ACTION DONE:</label>
-        <textarea id="pegaAction"></textarea>
-
-        <label for="pegaNextAction">NEXT ACTION:</label>
-        <textarea id="pegaNextAction"></textarea>
-
-        <label for="pegaOsad">OSAD (Y/N):</label>
-        <select id="pegaOsad" onchange="toggleOsadReason()">
-            <option value="">-- Select --</option>
-            <option value="Y">Y</option>
-            <option value="N">N</option>
-        </select>
-
-        <!-- Hidden OSAD Reason -->
-        <div id="pegaOsadReasonWrapper" style="display:none; margin-top:8px;">
-            <label for="pegaOsadReason">Reason:</label>
-            <select id="pegaOsadReason">
-                <option value="">-- Select Reason --</option>
-                <option value="Site Launch">Site Launch</option>
-                <option value="Website Issue">Website Issue</option>
-                <option value="SSL Issue">SSL Issue</option>
-                <option value="SSL">SSL</option>
-            </select>
-        </div>
-
-        <div class="preview-container">
-            <h3>Preview</h3>
-            <div class="preview-box"></div>
-            <div class="form-buttons">
-                <button type="button" class="btn-copy" onclick="copyPreview('pegaTemplate')">Copy</button>
-                <button type="button" class="btn-reset" onclick="resetForm('pegaTemplate')">Reset</button>
+        <div class="template-selector-container" id="pegaContainer">
+            <div class="logo-slot" style="text-align:center;">
+                <img src="https://kodenashi.github.io/pega/assets/pegalogo.png" alt="Pega" style="max-width:120px;">
             </div>
+            <h2 style="text-align:center;">Pega Templates</h2>
+
+            <select id="pegaDropdown" onchange="showPegaForm()">
+                <option value="">-- Select a Template --</option>
+                <option value="pegaTemplate">Pega Case Note</option>
+            </select>
+
+            <form id="pegaTemplate" class="template-form">
+                <H2>Pega Notes</H2>
+                <label for="pegaCid">CID:</label>
+                <input type="text" id="pegaCid" />
+
+                <label for="pegaCprod">CPROD:</label>
+                <input type="text" id="pegaCprod" />
+
+                <label for="pegaPhone">PHONE#:</label>
+                <input type="text" id="pegaPhone" />
+
+                <label for="pegaName">NAME:</label>
+                <input type="text" id="pegaName" />
+
+                <label for="pegaAuth">AUTHENTICATED (Y/N):</label>
+                <select id="pegaAuth">
+                    <option value="">-- Select --</option>
+                    <option value="Y">Y</option>
+                    <option value="N">N</option>
+                </select>
+
+                <label for="pegaDomain">DOMAIN:</label>
+                <input type="text" id="pegaDomain" />
+
+                <label for="pegaConcern">CONCERN:</label>
+                <textarea id="pegaConcern"></textarea>
+
+                <label for="pegaAction">ACTION DONE:</label>
+                <textarea id="pegaAction"></textarea>
+
+                <label for="pegaNextAction">NEXT ACTION:</label>
+                <textarea id="pegaNextAction"></textarea>
+
+                <label for="pegaOsad">OSAD (Y/N):</label>
+                <select id="pegaOsad" onchange="toggleOsadReason()">
+                    <option value="">-- Select --</option>
+                    <option value="Y">Y</option>
+                    <option value="N">N</option>
+                </select>
+
+                <!-- Hidden OSAD Reason -->
+                <div id="pegaOsadReasonWrapper" style="display:none; margin-top:8px;">
+                    <label for="pegaOsadReason">Reason:</label>
+                    <select id="pegaOsadReason">
+                        <option value="">-- Select Reason --</option>
+                        <option value="Site Launch">Site Launch</option>
+                        <option value="Website Issue">Website Issue</option>
+                        <option value="SSL Issue">SSL Issue</option>
+                        <option value="SSL">SSL</option>
+                    </select>
+                </div>
+
+                <div class="preview-container">
+                    <h3>Preview</h3>
+                    <div class="preview-box"></div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-copy" onclick="copyPreview('pegaTemplate')">Copy</button>
+                        <button type="button" class="btn-reset" onclick="resetForm('pegaTemplate')">Reset</button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
 
 
 
@@ -105,6 +106,7 @@
 
             <!-- Leadership Escalation -->
             <form id="note6Form" class="template-form">
+                <h2>Leadership Escalation</h2>
                 <label>Name:</label>
                 <input type="text" id="name6" oninput="updatePreview()">
                 <label>Phone number:</label>
@@ -134,6 +136,7 @@
 
             <!-- LBL Modification -->
             <form id="note3Form" class="template-form">
+                <h2>LBL Modification</h2>
                 <h2 style="color:red; text-align:center;">
                     Subject should be: <br>CPROD: xxxxxxxx | LBL Request
                 </h2>
@@ -167,6 +170,7 @@
 
             <!-- OBCX -->
             <form id="note4Form" class="template-form">
+                <h2>OBCX Callback Request</h2>
                 <label>Customer Name:</label>
                 <input type="text" id="customerName4" oninput="updatePreview()">
                 <label>Customer Contact Number:</label>
@@ -192,6 +196,7 @@
 
             <!-- Refund Request -->
             <form id="note5Form" class="template-form">
+                <h2>Refund Request</h2>
                 <label>URL:</label>
                 <input type="text" id="url5" oninput="updatePreview()">
                 <label>Customer Name:</label>
@@ -217,6 +222,7 @@
 
         <!-- ================= OSAD Section (RIGHT) ================= -->
         <div class="template-selector-container" id="osadContainer">
+
             <div style="text-align:center;">
                 <img src="https://kodenashi.github.io/notes_generator/assets/logo.png" alt="Logo" style="max-width:120px;">
             </div>
@@ -229,6 +235,7 @@
 
             <!-- OSAD Notes -->
             <form id="note1Form" class="template-form">
+                <h2>OSAD Notes</h2>
                 <label>Product affected:</label>
                 <input type="text" id="product1" oninput="updatePreview()">
                 <label>How to Replicate/Reproduce the issue/error:</label>
@@ -260,6 +267,7 @@
 
             <!-- Site Launch -->
             <form id="note2Form" class="template-form">
+                <h2>Site Launch</h2>
                 <label>F-case:</label>
                 <input type="text" id="fcase2" oninput="updatePreview()">
                 <label>The domain name:</label>
