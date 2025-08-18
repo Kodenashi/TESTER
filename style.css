@@ -36,11 +36,15 @@ body {
 
 .template-selector-container h2 {
   margin-top: 0;
-  font-size: 2rem;     /* smaller */
+  font-size: 2rem;  
   font-weight: bold;
   color: #002b5c;
   border-bottom: 2px solid #e0e6f5;
   padding-bottom: 6px;
+}
+h2 {
+  text-align: Center;
+  font-size: 10px;
 }
 
 select {
