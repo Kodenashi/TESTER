@@ -1,4 +1,3 @@
-// ---------- Live preview (works for every form) ----------
 function updatePreview(evtOrForm) {
   let form = null;
 
@@ -13,9 +12,10 @@ function updatePreview(evtOrForm) {
 
   const lines = [];
 
-  form.querySelectorAll('input, textarea').forEach(el => {
-    if (el.classList.contains('change-text')) return; // LBL dynamic fields handled later
+  form.querySelectorAll('input, textarea, select').forEach(el => {
+    if (el.classList.contains('change-text')) return; 
     if (el.type === 'button') return;
+    if (el.style.display === "none") return; 
 
     const val = (el.value || '').trim();
     if (!val) return;
@@ -25,7 +25,6 @@ function updatePreview(evtOrForm) {
     lines.push(`${label} ${val}`.trim());
   });
 
-  // LBL dynamic "Change Request" items
   const changeEls = form.querySelectorAll('#changeRequests .change-text');
   changeEls.forEach((el, idx) => {
     const val = (el.value || '').trim();
@@ -36,12 +35,10 @@ function updatePreview(evtOrForm) {
   if (preview) preview.textContent = lines.join('\n');
 }
 
-// Attach live preview to all forms
 document.querySelectorAll('form.template-form').forEach(form => {
   form.addEventListener('input', updatePreview);
 });
 
-// ---------- Copy / Reset ----------
 function copyPreview(formId) {
   const preview = document.querySelector(`#${formId} .preview-box`);
   if (!preview) return;
@@ -50,15 +47,28 @@ function copyPreview(formId) {
   });
 }
 
-function resetForm(formId) {
-  const form = document.getElementById(formId);
+function resetForm(form) {
   if (!form) return;
+
   form.reset();
+
   const preview = form.querySelector('.preview-box');
   if (preview) preview.textContent = '';
+
+  const changeFields = form.querySelectorAll('#changeRequests .change-request-field');
+  changeFields.forEach(f => f.remove());
+
+  const pegaReason = form.querySelector('#pegaReasonWrapper');
+  if (pegaReason) pegaReason.style.display = "none";
+
+  const osadReasonWrapper = form.querySelector('#pegaOsadReasonWrapper');
+  if (osadReasonWrapper) {
+    osadReasonWrapper.style.display = "none";
+    const osadReason = form.querySelector('#pegaOsadReason');
+    if (osadReason) osadReason.value = "";
+  }
 }
 
-// ---------- Helpers ----------
 function hideAllForms() {
   document.querySelectorAll('.template-form.active').forEach(f => f.classList.remove('active'));
 }
@@ -72,7 +82,6 @@ function hideOtherContainers(currentContainer) {
 function addBackButtons(form) {
   if (!form) return;
 
-  // Top button
   if (!form.querySelector('.btn-back.top')) {
     const topBtn = document.createElement('button');
     topBtn.type = 'button';
@@ -83,7 +92,6 @@ function addBackButtons(form) {
     form.insertBefore(topBtn, form.firstChild);
   }
 
-  // Bottom button
   if (!form.querySelector('.btn-back.bottom')) {
     const bottomBtn = document.createElement('button');
     bottomBtn.type = 'button';
@@ -96,17 +104,21 @@ function addBackButtons(form) {
 }
 
 function backToSelector() {
-  hideAllForms();
-  // show all containers and reset both/all dropdowns
+
+  document.querySelectorAll('form.template-form.active').forEach(f => {
+    resetForm(f);
+    f.classList.remove('active');
+  });
+
   document.querySelectorAll('.template-selector-container').forEach(c => (c.style.display = ''));
   document.querySelectorAll('.template-selector-container select').forEach(sel => {
     sel.style.display = '';
     sel.value = '';
   });
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ---------- PEGA toggle ----------
 function showPegaForm() {
   const dropdown = document.getElementById('pegaDropdown');
   const selectedId = dropdown.value;
@@ -120,13 +132,25 @@ function showPegaForm() {
     form.classList.add('active');
     addBackButtons(form);
     updatePreview(form);
+
+    const osadSelect = form.querySelector('#pegaOsad');
+    const reasonWrapper = form.querySelector('#pegaReasonWrapper');
+    if (osadSelect && reasonWrapper) {
+      osadSelect.addEventListener('change', () => {
+        if (osadSelect.value === "Y") {
+          reasonWrapper.style.display = "block";
+        } else {
+          reasonWrapper.style.display = "none";
+        }
+        updatePreview(form);
+      });
+    }
   }
 
   hideOtherContainers(pegaContainer);
   dropdown.style.display = 'none';
 }
 
-// ---------- PPCC / OSAD toggles ----------
 function showPPCCForm() {
   const dropdown = document.getElementById('ppccDropdown');
   const selectedId = dropdown.value;
@@ -165,7 +189,6 @@ function showOSADForm() {
   dropdown.style.display = 'none';
 }
 
-// ---------- LBL: Add / Remove Change Requests ----------
 document.addEventListener('DOMContentLoaded', () => {
   const addBtn = document.getElementById('addChangeBtn');
   const container = document.getElementById('changeRequests');
@@ -199,3 +222,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+function toggleOsadReason() {
+  const osadDropdown = document.getElementById("pegaOsad");
+  const osadReasonWrapper = document.getElementById("pegaOsadReasonWrapper");
+
+  if (osadDropdown.value === "Y") {
+    osadReasonWrapper.style.display = "block";
+  } else {
+    osadReasonWrapper.style.display = "none";
+    document.getElementById("pegaOsadReason").value = ""; 
+  }
+}
